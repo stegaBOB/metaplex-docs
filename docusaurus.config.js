@@ -36,7 +36,7 @@ module.exports = {
           items: [
             {
               label: 'Discord',
-              href: 'https://discordapp.com/metaplex',
+              href: 'https://discord.gg/RfzFD9g9WE',
             },
             {
               label: 'Twitter',

@@ -1,18 +1,14 @@
----
-id: metadata-standard
-title: Solana NFT Metadata Standard 
----
 # Solana NFT Metadata Standard
-### Huge thanks to SolFlare for putting this together!
+#### Huge thanks to SolFlare for putting this together!
 
-Solflare supports the displaying of _metadata_ associated with SPL tokens, in accordance with the standards described by the Metaplex Token Metadata contract. Solflare will pull both the on-chain data and the external JSON provided by the metadata's `uri` field and use them to display all relevant data.
+SPL wallets should support the displaying of _metadata_ associated with SPL tokens, in accordance with the standards described by the Metaplex Token Metadata contract. Wallets should pull both the on-chain data and the external JSON provided by the metadata's `uri` field and use them to display all relevant data.
 
-We recommend following the Metaplex standards and standards defined in this document to ensure your NFT will be correctly displayed in Solflare wallets and to allow usage of all Solflare functionalities related to NFTs.
+We recommend following the Metaplex standards and standards defined in this document to ensure your NFT will be correctly displayed in your wallets and to allow usage of all functionalities related to NFTs.
 
 ## Token Metadata Program
 The concept of the Token Metadata program is to provide decorator structs to a token mint. Basic info about the SPL token is provided with the `Metadata` struct, whose account address is a PDA with a derived key of `['metadata', metadata_program_id, mint_id]`.
 
-Solflare uses the following information from the on-chain metadata:
+Your wallet should be using the following information from the on-chain metadata:
 
 Field | Type | Description | How do we display it
 ---------------------------------|------|--------------|---------------
@@ -24,16 +20,15 @@ update_authority|string| public key of the metadata owner | shown in the single 
 primary_sale_happened|boolean| flag describing whether the primary sale of the token happened | visible in the send NFT modal, can be updated
 seller_fee_basis_points|number| royalties percentage awarded to creators | shown as a percentage received by each co-creator
 
-
-The program also specifies optional structs used for the creation `Master Editions` and `Editions`. If these accounts exist, Solflare will display the Edition number (in case of a unique edition token) and whether a token is a `Master Edition`.
+The program also specifies optional structs used for the creation `Master Editions` and `Editions`. If these accounts exist, your wallet should display the Edition number (in case of a unique edition token) and whether a token is a `Master Edition`.
 
 !!! info
 	You can explore the metadata standard in more detail on the [Metaplex project page](https://github.com/metaplex-foundation/metaplex) and in their developer guide.
 
 ## URI JSON Schema
-To display off-chain metadata of SPL tokens, the on-chain struct needs to contain a URI as described above, which will allow Solflare to find it.
+To display off-chain metadata of SPL tokens, the on-chain struct needs to contain a URI as described above, which will allow your wallet to find it.
 
-Solflare uses the JSON standard as described in the Metaplex Developer Guide. Solflare also supports additional optional fields, such as the `attributes` field, as described in the OpenSea NFT Standard.
+Your wallet should be using the JSON standard as described in the Metaplex Developer Guide. You should also also supports additional optional fields, such as the `attributes` field, as described in the OpenSea NFT Standard.
 
 The file below should be used as a reference.
 
@@ -124,7 +119,7 @@ If you wish to provide additional hosting for your files to provide users a bett
 	]
 }
 ```
-If such a flag exists, that file is the primary option when selecting the multimedia-attachment (video, audio or 3D) that will be displayed to owners. If that file is no longer available, Solflare defaults to using the URL in `animation_url` field.
+If such a flag exists, that file is the primary option when selecting the multimedia-attachment (video, audio or 3D) that will be displayed to owners. If that file is no longer available, you wallet should default to it using the URL in `animation_url` field.
 
 #### Collections
 If the NFT belongs to a group of other unique NFTs, you can mark them with an additional `collection` field that contains the name of the collection. 
@@ -136,10 +131,10 @@ If the NFT belongs to a group of other unique NFTs, you can mark them with an ad
 ```
 `collection.family` represents the larger set of NFTs your asset can belong to, in the case you are making multiple variations on a theme. It should always be a unique identifier of your whole project and never a general term like "cars", "art" or similar.
 
-Solflare will be able to group NFTs belonging to the same family and display the collection name on a single NFT view.
+You wallet should be able to group NFTs belonging to the same family and display the collection name on a single NFT view.
 
 #### Additional attributes specification 
-In addition to current fields available for specifying attributes, Solflare will integrate additional fields for describing attributes. 
+In addition to current fields available for specifying attributes, your wallet should integrate additional fields for describing attributes. 
 Some of them are:
 - `display_type: "Date"` - will display the `value` as a date, use a unix timestamp to specify it
 - `max_value: Number` - if the `value` is also a number, it will be displayed as a bar chart with a maximum value
@@ -148,7 +143,7 @@ Some of them are:
 The only mandatory fields to describe an attribute are: `trait_type` and `trait_value`.
 
 #### Order of JSON fields
-Since Solflare gives users a direct link to the JSON file, it is recommended to keep the order of fields same as in the reference, so as to maintain good human readability of its contents.
+Since you wallet will give users a direct link to the JSON file, it is recommended to keep the order of fields same as in the reference, so as to maintain good human readability of its contents.
 
 #### Other arbitrary data
 We suggest using the properties field to store other arbitrary data that will be used by specialized applications.
