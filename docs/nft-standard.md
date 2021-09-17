@@ -91,13 +91,14 @@ For the fields that match the on-chain metadata, on-chain information has priori
 
 - `description` - Human readable description of the asset.
 - `image` - URL to the image of the asset. PNG, GIF and JPG file formats are supported. You may use the `?ext={file_extension}` query to provide information on the file type.
-- `animation_url` - URL to a multi-media attachment of the asset. The supported file formats are MP4 and MOV for video, MP3, FLAC and WAV for audio and GLB for AR/3D assets. You may use the `?ext={file_extension}` query to provide information on the file type.
+- `animation_url` - URL to a multi-media attachment of the asset. The supported file formats are MP4 and MOV for video, MP3, FLAC and WAV for audio, GLB for AR/3D assets, and HTML for HTML files. You may use the `?ext={file_extension}` query to provide information on the file type.
 - `external_url` - URL to an external application or website where users can also view the asset.
 - `properties.category` - Supported categories: 
 	- `"image"` - PNG, GIF, JPG
 	- `"video"` - MP4, MOV
 	- `"audio"` - MP3, FLAC, WAV
 	- `"vr"` - 3D models; GLB, GLTF
+	- `"html"` - HTML files (This is a new addition that Metaplex now supports, so at the moment there is limited support from wallets)
 - `properties.files` - Object array, where an object should contain the `uri` and `type` of the file that is part of the asset. The type should match the file extension. The array will also include files specified in `image` and `animation_url` fields, and any other that are associated with the asset.
 You may use the `?ext={file_extension}` query to provide information on the file type.
 - `attributes` - Object array, where an object should contain `trait_type` and `value` fields. `value` can be a string or a number.
